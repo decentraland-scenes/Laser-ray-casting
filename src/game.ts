@@ -22,10 +22,7 @@
   hitMaterial2.roughness = 0.5
   hitMaterial2.albedoColor = new Color3(.2, 1, .2)
   
-  const rayMaterial = new Material()
-  rayMaterial.metallic = 1
-  rayMaterial.roughness = 0.5
-  rayMaterial.albedoColor = new Color3(30, 1, 1)
+3
   
   //-------------------------------------------------------
   // Parent cube
@@ -96,8 +93,8 @@
 	  // For the fixed ray, we cast a hit first
 	  PhysicsCast.instance.hitAll(ray, (e) => {
 		if (e.didHit) {
-		  for (let entity of e.entities) {
-			engine.entities[entity.entity.entityId].addComponentOrReplace(hitMaterial)
+		  for (let entityHit of e.entities) {
+			engine.entities[entityHit.entity.entityId].addComponentOrReplace(hitMaterial)
 		  }	  
 		}
 		else {
@@ -116,10 +113,8 @@
 	  // For the camera ray, we cast a hit all
 	  PhysicsCast.instance.hitAll(rayFromCamera, (e) => {
 		if (e.didHit) {
-		  for (let entity of e.entities) {
-			if (entity.didHit) {
-			  engine.entities[entity.entity.entityId].addComponentOrReplace(hitMaterial2)
-			}
+		  for (let entityHit of e.entities) {
+			  engine.entities[entityHit.entity.entityId].addComponentOrReplace(hitMaterial2)
 		  }
 		}
 	  })
