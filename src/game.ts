@@ -82,6 +82,10 @@ for (let i = 0; i < boxesCount; i++) {
 
 //-------------------------------------------------------
 // System that casts the rays
+const rayId1 = 1
+const rayId2 = 2
+
+
 class RaycastingSystem implements ISystem {
 group = engine.getComponentGroup(Transform)
 
@@ -107,7 +111,9 @@ group = engine.getComponentGroup(Transform)
 					}
 				}
 			}
-		})
+		}, 
+		rayId1
+		)
 
 		// Ray from camera
 		const rayFromCamera: Ray = PhysicsCast.instance.getRayFromCamera(1000)
@@ -120,7 +126,9 @@ group = engine.getComponentGroup(Transform)
 					engine.entities[entityHit.entity.entityId].addComponentOrReplace(hitMaterial2)
 				}
 			}
-		})
+		}, 
+		rayId2
+		)
 	}
 }
 
